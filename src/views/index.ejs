@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>renDev</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+</head>
+
+<body>
+    <header>
+        <h1>renDev demo: 이어폰/헤드셋 사용을 부탁드립니다.</h1>
+    </header>
+
+    <main>        
+        <div id="welcome">
+            <form>
+                <input placeholder="인터뷰 코드" required type="text">
+                <button>인터뷰 입장</button>
+            </form>
+        </div>            
+        
+        <div id="call"> 
+            <div id="myStream">
+                <video id="myFace" autoplay muted playsinline width="400" height="400"></video>
+                <button id="mute">내 마이크 끄기</button>
+                <button id="camera">내 카메라 끄기</button>
+                <select id="cameras"></select></div>
+                
+                <video id="peerFace" autoplay playsinline width="400" height="400"></video>
+            </div>
+            
+            <div id="chat">
+                <ul> </ul>
+                <form id="msg">
+                    <input placeholder="메시지를 입력해주세요" required type="text">
+                    <button>Send</button>
+                    <button id="finish">인터뷰 종료</button></form>
+            </div>
+        </main>
+                
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/public/js/app.js"></script>
+</body>
+</html>
