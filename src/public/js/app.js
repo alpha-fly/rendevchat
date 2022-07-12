@@ -126,14 +126,29 @@ async function initCall() {
     makeConnection();
 };
 
+function handleChange(e) {
+    const test1 = document.getElementById("CodeInput1").value
+    const test2 = document.getElementById("CodeInput2").value
+    const test3 = document.getElementById("CodeInput3").value
+    const test4 = document.getElementById("CodeInput4").value
+    const test5 = document.getElementById("CodeInput5").value
+    const test6 = document.getElementById("CodeInput6").value
+
+    const testall = [test1, test2, test3, test4, test5, test6]
+    return (testtwo = testall.join(''))
+  }
+
+
 // (2) interview code(room name)을 입력받고 join_room에 전달한다. 
 async function handleWelcomeSubmit(event) {
     event.preventDefault();
     const input = welcomeForm.querySelector("input");
-    socket.emit("check_code", input.value );  
-    roomName = input.value
+    const handle = handleChange()
+    socket.emit("check_code", handle );  
+    roomName = handle
     input.value=""
 }
+
 
 socket.on("right_code", async (roomName) => {
     await initCall();
