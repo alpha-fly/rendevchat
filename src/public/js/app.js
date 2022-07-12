@@ -68,11 +68,11 @@ function handleMuteClick () {
     if (!muted) {
         // document.getElementById("img").src = "../image/mute.svg";
         // 이미지 에셋 번달 받은 후 이미지 수정 예정
-        muteBtn.innerText = "mute"        
+        muteBtn.innerText = "음소거"        
         muted = true;
     } else {
         
-        muteBtn.innerText = "unmute"        
+        muteBtn.innerText = "음켜기"        
         muted = false;
     }
 }
@@ -81,10 +81,10 @@ function handleMuteClick () {
 function handleCameraClick () {    
     myStream.getVideoTracks().forEach((track) => (track.enabled = !track.enabled));
     if (cameraOff) {
-        cameraBtn.innerText = "disable"        
+        cameraBtn.innerText = "캠끄기"        
         cameraOff = false
     } else {
-        cameraBtn.innerText = "enable"        
+        cameraBtn.innerText = "캠켜기"        
         cameraOff = true
     }
 }
