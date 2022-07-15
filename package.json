@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "nodemon"
   },
-  "start": "nodemon --exec --delay 2",
+  "start": "nodemon --exec",
   "devDependencies": {
     "@babel/cli": "^7.18.6",
     "@babel/core": "^7.18.6",
