@@ -37,8 +37,7 @@ const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: "root",
   password: process.env.DB_PASSWORD,
-  database: "rendevSQL",  // 진짜 DB
-  // database: "rendevSQLtest",  // 로컬에서 쓰는 테스트용 DB
+  database: "rendevSQL",  
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
@@ -96,10 +95,6 @@ wsServer.on("connection", (socket) => {
           //   const errormessage =
           //     `인터뷰 예약시간 기준 "15분 전 ~ 3시간 후" 사이에만 입장 가능합니다.`;
 
-          //   socket.emit("wrong_code", errormessage);
-          //   pool.releaseConnection(conn);
-          //   return;
-          // }
           //-----( 7/16 MVP 시간조건 off )-----------------------------------------------
 
           // 위 두 조건을 모두 통과했다면 영상통화방으로 입장한다.
