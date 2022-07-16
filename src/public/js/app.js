@@ -212,7 +212,7 @@ async function handleMessageSubmit(event) {
     const value = input.value
    
     socket.emit("new_message", input.value, roomName, () => {
-        addMessage(`You : ${value}`);    
+        addMessage(`나    : ${value}`);    
     });
     input.value=""
 }
