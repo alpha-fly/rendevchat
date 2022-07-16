@@ -79,27 +79,23 @@ wsServer.on("connection", (socket) => {
           console.log(interview);
 
           // -----( 7/16 MVP 시간조건 off )------- 인터뷰 예약시간 기준 "15분전 ~ 3시간 후" 사이일 때만 인터뷰 입장이 가능.        
-          const currentTime = new Date();          
-          const fifteenMinEarlier = new Date( (Date.parse(interview["schedule"])) - 1000 * 60 * 15 );
-          const threeHrslater = new Date( (Date.parse(interview["schedule"])) + 1000 * 60 * 60 * 3 );
+          // const currentTime = new Date();          
+          // const fifteenMinEarlier = new Date( (Date.parse(interview["schedule"])) - 1000 * 60 * 15 );
+          // const threeHrslater = new Date( (Date.parse(interview["schedule"])) + 1000 * 60 * 60 * 3 );
 
-          console.log("현재시각 :", currentTime)
-          console.log("인터뷰시간:", interview["schedule"])
-          console.log("15분 전  :", fifteenMinEarlier)
-          console.log("3시간 후 :", threeHrslater)        
+          // console.log("현재시각 :", currentTime)
+          // console.log("인터뷰시간:", interview["schedule"])
+          // console.log("15분 전  :", fifteenMinEarlier)
+          // console.log("3시간 후 :", threeHrslater)        
 
-          if (
-            currentTime < fifteenMinEarlier ||
-            currentTime > threeHrslater
-          ) {
-            const errormessage =
-              `인터뷰 예약시간 기준 "15분 전 ~ 3시간 후" 사이에만 입장 가능합니다.`;
+          // if (
+          //   currentTime < fifteenMinEarlier ||
+          //   currentTime > threeHrslater
+          // ) {
+          //   const errormessage =
+          //     `인터뷰 예약시간 기준 "15분 전 ~ 3시간 후" 사이에만 입장 가능합니다.`;
 
-            socket.emit("wrong_code", errormessage);
-            pool.releaseConnection(conn);
-            return;
-          }
-          //-----( 7/16 MVP 시간조건 off )-----------------------------------------------        
+          //-----( 7/16 MVP 시간조건 off )-----------------------------------------------
 
           // 위 두 조건을 모두 통과했다면 영상통화방으로 입장한다.
           socket.emit("right_code", code);
