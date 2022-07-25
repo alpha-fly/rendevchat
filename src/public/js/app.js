@@ -216,7 +216,7 @@ function addMessage(message, socketId) {
         chatLog.appendChild($msg)
     }else {
         let $msg = document.createElement('div')
-        $msg.innerHTML = `<div class="anotherMsg msgEl"><span class="anotherName">상대방</span><span class="msg">${message}</span></div>`
+        $msg.innerHTML = `<div class="anotherMsg msgEl"><span class="msg">${message}</span></div>`
         chatLog.appendChild($msg)
     }
     chatLog.scrollTop(chatLog.scrollHeight - chatLog.clientHeight)
