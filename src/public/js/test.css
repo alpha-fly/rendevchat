@@ -111,8 +111,7 @@ header{
     z-index: -10px; */
     position: relative;
     width: 400px; 
-    height: 300px;
-    z-index: -10px;
+    height: 300px;    
 }
 
 .CameraButtonWrap{
@@ -126,8 +125,10 @@ header{
     width: 890px;
     height: 617px;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+    /* justify-content: flex-start; */
+    /* align-items: flex-start; */
+    justify-content: center;    
+    align-items: center;
 }
 
 #chat{
