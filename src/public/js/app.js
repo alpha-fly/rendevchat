@@ -129,8 +129,15 @@ async function initCall() {
     msgForm.addEventListener("submit", handleMessageSubmit)  
 
     await getMedia();
-    makeConnection();
+    makeConnection();    
 };
+
+// 사용자의 캠 유무를 확인하고 WebRTC 연결을 시도한다. 캠 없으면 이후 절차 X
+// async function initCam() {
+//     await getMedia();
+//     makeConnection();    
+// }
+
 
 function handleChange(e) {
     const test1 = document.getElementById("CodeInput1").value
@@ -155,10 +162,9 @@ async function handleWelcomeSubmit(event) {
     input.value=""
 }
 
-// 아래 코드에서 initCall과 socket.emit(join room)의 순서를 바꾸면, 캠이 없는 경우 소켓 연결이 되지 않는다. 
 socket.on("right_code", async (roomName) => {
+    await initCall();    
     socket.emit("join_room", roomName );  
-    await initCall();                  
 });
 
 socket.on("wrong_code", async (errormessage) => {
@@ -170,8 +176,9 @@ welcomeForm.addEventListener("submit", handleWelcomeSubmit)
 
 //socket code part 1 : 영상채팅용 socket 통신 (WebRTC peer-to-peer 연결을 위한 부분)
 
+
 // (4) 방에 입장되었다. 시그널링을 시작함, offer의 내용을 만들어 서버에 보낸다. 
-socket.on("welcome", async () => {
+socket.on("welcome", async () => {    
     const offer = await myPeerConnection.createOffer();    
     myPeerConnection.setLocalDescription(offer)
     console.log("sent the offer")
