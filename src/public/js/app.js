@@ -8,9 +8,6 @@ const camerasSelect = document.getElementById("cameras");
 
 const call  = document.getElementById("call")
 const chat  = document.getElementById("chat")
-// const chat  = document.getElementById("ChatText")
-// const chatLog  = document.getElementById("chatLog")
-
 
 call.hidden = true;
 chat.hidden = true;
@@ -203,13 +200,8 @@ socket.on("ice", ice => {
 
 //socket code part 2 : 텍스트 채팅 핸들링
 function addMessage(message, socketId) {
-    console.log(message, socketId)
+    console.log(message, socketId)  
     
-    // const ul = chat.querySelector("ul")
-    // const li = document.createElement("li")
-    // li.innerText = message;
-    // ul.appendChild(li);
-
     if (socketId === socket.Id) {
         let $msg = document.createElement('div')
         $msg.innerHTML = `<div class="myMsg msgEl"><span class="msg">${message}</span></div>`
@@ -219,7 +211,7 @@ function addMessage(message, socketId) {
         $msg.innerHTML = `<div class="anotherMsg msgEl"><span class="msg">${message}</span></div>`
         chatLog.appendChild($msg)
     }
-    chatLog.scrollTop(chatLog.scrollHeight - chatLog.clientHeight)
+    chatLog.scrollTop = chatLog.scrollHeight;
 }
 
 async function handleMessageSubmit(event) {

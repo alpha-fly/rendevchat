@@ -134,55 +134,56 @@ wsServer.on("connection", (socket) => {
     done();
   });  
 
-  // 인터뷰 종료 버튼을 눌렀을 때 DB에 상태변화 적용해주기
-  socket.on("finish_interview", (roomName) => {
-    pool.getConnection(function(err, conn){
-      pool.query(
-        `SELECT interviewCode, status 
-              from application
-              WHERE interviewCode="${roomName}"`,
-        (error, results) => {
-          if (error) {
-            console.log(error);
-            pool.releaseConnection(conn);
-          }
-          console.log(results);
+  // 인터뷰 종료 버튼을 눌렀을 때 DB에 상태변화 적용해주기 : 기능 OFF
+  // 영상채팅 화면 말고, 마이페이지의 "내 모집현황" 에서 프로젝트 팀장이 처리하기로 함. 
+  // socket.on("finish_interview", (roomName) => {
+  //   pool.getConnection(function(err, conn){
+  //     pool.query(
+  //       `SELECT interviewCode, status 
+  //             from application
+  //             WHERE interviewCode="${roomName}"`,
+  //       (error, results) => {
+  //         if (error) {
+  //           console.log(error);
+  //           pool.releaseConnection(conn);
+  //         }
+  //         console.log(results);
 
-          // status가 finish(1)이나 finish(2)가 아닐 경우, finish(1)로 바꿔준다.
-          if (
-            results[0]["status"] !== "finish(1)" &&
-            results[0]["status"] !== "finish(2)"
-          ) {
-            pool.query(
-              `UPDATE application 
-                        SET status="finish(1)" 
-                        WHERE interviewCode="${roomName}"`,
-              (error, results) => {
-                if (error) {
-                  console.log(error);
-                  pool.releaseConnection(conn);
-                }
-              }
-            );
+  //         // status가 finish(1)이나 finish(2)가 아닐 경우, finish(1)로 바꿔준다.
+  //         if (
+  //           results[0]["status"] !== "finish(1)" &&
+  //           results[0]["status"] !== "finish(2)"
+  //         ) {
+  //           pool.query(
+  //             `UPDATE application 
+  //                       SET status="finish(1)" 
+  //                       WHERE interviewCode="${roomName}"`,
+  //             (error, results) => {
+  //               if (error) {
+  //                 console.log(error);
+  //                 pool.releaseConnection(conn);
+  //               }
+  //             }
+  //           );
 
-          // status가 finish(1)이라면, finish(2)로 바꿔준다.
-          } else if (results[0]["status"] == "finish(1)") {
-            pool.query(
-              `UPDATE application 
-                        SET status="finish(2)" 
-                        WHERE interviewCode="${roomName}"`,
-              (error, results) => {
-                if (error) {
-                  console.log(error);
-                  pool.releaseConnection(conn);
-                }
-              });
-          }
-        }
-      )
-      pool.releaseConnection(conn);
-    });
-  });  
+  //         // status가 finish(1)이라면, finish(2)로 바꿔준다.
+  //         } else if (results[0]["status"] == "finish(1)") {
+  //           pool.query(
+  //             `UPDATE application 
+  //                       SET status="finish(2)" 
+  //                       WHERE interviewCode="${roomName}"`,
+  //             (error, results) => {
+  //               if (error) {
+  //                 console.log(error);
+  //                 pool.releaseConnection(conn);
+  //               }
+  //             });
+  //         }
+  //       }
+  //     )
+  //     pool.releaseConnection(conn);
+  //   });
+  // });  
 
   // socket.on("disconnecting", () => {
   //     socket.rooms.forEach((room) => socket.to(room).emit("bye", socket.nickname));
