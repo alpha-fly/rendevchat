@@ -75,8 +75,7 @@ wsServer.on("connection", (socket) => {
             socket.emit("wrong_code", errormessage);
             pool.releaseConnection(conn);
             return;
-          }          
-          console.log(interview);
+          }                    
 
           // -----( 7/16 MVP 시간조건 off )------- 인터뷰 예약시간 기준 "15분전 ~ 3시간 후" 사이일 때만 인터뷰 입장이 가능.        
           // const currentTime = new Date();          
@@ -107,8 +106,8 @@ wsServer.on("connection", (socket) => {
   // (3-2) 전달받은 room name 으로 입장한다 (없는 경우 room 만들면서 입장)
   socket.on("join_room", (roomName) => {    
     socket.join(roomName);    
-    socket.to(roomName).emit("welcome");
-    
+    console.log("JOIN ROOM excuted")
+    socket.to(roomName).emit("welcome");    
   });
  
   // 아래 offer, answer, ice : WebRTC peer-to-peer 연결을 위해 socket으로 시그널링
