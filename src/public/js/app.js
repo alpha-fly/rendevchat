@@ -8,6 +8,9 @@ const camerasSelect = document.getElementById("cameras");
 
 const call  = document.getElementById("call")
 const chat  = document.getElementById("chat")
+// const chat  = document.getElementById("ChatText")
+// const chatLog  = document.getElementById("chatLog")
+
 
 call.hidden = true;
 chat.hidden = true;
@@ -109,7 +112,7 @@ async function handleFinishInterview() {
 
 muteBtn.addEventListener("click", handleMuteClick);
 cameraBtn.addEventListener("click", handleCameraClick);
-finishBtn.addEventListener("click", handleFinishInterview) // 인터뷰 종료 버튼에 이벤트 배정
+// finishBtn.addEventListener("click", handleFinishInterview) // 인터뷰 종료 버튼에 이벤트 배정
 camerasSelect.addEventListener("input", handleCameraChange);
 
 
@@ -199,11 +202,24 @@ socket.on("ice", ice => {
 })
 
 //socket code part 2 : 텍스트 채팅 핸들링
-function addMessage(message) {
-    const ul = chat.querySelector("ul")
-    const li = document.createElement("li")
-    li.innerText = message;
-    ul.appendChild(li);
+function addMessage(message, socketId) {
+    console.log(message, socketId)
+    
+    // const ul = chat.querySelector("ul")
+    // const li = document.createElement("li")
+    // li.innerText = message;
+    // ul.appendChild(li);
+
+    if (socketId === socket.Id) {
+        let $msg = document.createElement('div')
+        $msg.innerHTML = `<div class="myMsg msgEl"><span class="msg">${message}</span></div>`
+        chatLog.appendChild($msg)
+    }else {
+        let $msg = document.createElement('div')
+        $msg.innerHTML = `<div class="anotherMsg msgEl"><span class="anotherName">상대방</span><span class="msg">${message}</span></div>`
+        chatLog.appendChild($msg)
+    }
+    chatLog.scrollTop(chatLog.scrollHeight - chatLog.clientHeight)
 }
 
 async function handleMessageSubmit(event) {
@@ -212,12 +228,12 @@ async function handleMessageSubmit(event) {
     const value = input.value
    
     socket.emit("new_message", input.value, roomName, () => {
-        addMessage(`나    : ${value}`);    
+        addMessage(value);    
     });
     input.value=""
 }
 
-socket.on("new_message", (msg) => {addMessage(msg)});
+socket.on("new_message", (msg, socketId) => {addMessage(msg, socketId)});
 
 // socket.on("bye", (left, newCount) => {
 //     const h3 = room.querySelector("h3");

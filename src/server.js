@@ -128,7 +128,9 @@ wsServer.on("connection", (socket) => {
 
   // 이하 text chat을 위한 socket 통신
   socket.on("new_message", (msg, roomName, done) => {
-    socket.to(roomName).emit("new_message", `${socket.nickname}: ${msg}`);
+    console.log(socket.id);
+    const socketId = socket.id
+    socket.to(roomName).emit("new_message", msg, socketId);
     done();
   });
 
