@@ -92,17 +92,26 @@ header{
 }
 
 #myFace{
-    border-radius: 20px;
+    /* border-radius: 20px;
     width: 280px;
     height: 175px;
+    position: absolute;
+    margin-top: 30px; */
+    border-radius: 20px;
+    width: 400px;
+    height: 300px;
     position: absolute;
     margin-top: 30px;
 }
 
-#peerFacce{
-    position: relative;
+#peerFace{
+    /* position: relative;
     width: 890px; 
     height: 617px;
+    z-index: -10px; */
+    position: relative;
+    width: 400px; 
+    height: 300px;
     z-index: -10px;
 }
 

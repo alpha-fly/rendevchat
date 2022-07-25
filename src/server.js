@@ -44,8 +44,8 @@ const pool = mysql.createPool({
 });
 
 wsServer.on("connection", (socket) => {
-  // (1) 소켓 접속되면 일단 nickname 을 Anonymous로 디폴트 설정해줌
-  socket["nickname"] = "상대방";
+  // (1) 소켓 접속되면 일단 nickname 을 Anonymous로 디폴트 설정해줌 : 닉네임 사용 안하므로 해당 코드는 삭제합니다
+  
 
   // 모든 socket 이벤트에 대한 log 표시 (필요시에만 주석을 풀어 사용할 것)
   // socket.onAny((event) => {
@@ -132,9 +132,7 @@ wsServer.on("connection", (socket) => {
     const socketId = socket.id
     socket.to(roomName).emit("new_message", msg, socketId);
     done();
-  });
-
-  socket.on("nickname", (nickname) => (socket["nickname"] = nickname));
+  });  
 
   // 인터뷰 종료 버튼을 눌렀을 때 DB에 상태변화 적용해주기
   socket.on("finish_interview", (roomName) => {
