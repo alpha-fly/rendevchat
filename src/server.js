@@ -105,11 +105,12 @@ wsServer.on("connection", (socket) => {
   });
 
   // (3-2) 전달받은 room name 으로 입장한다 (없는 경우 room 만들면서 입장)
-  socket.on("join_room", (roomName) => {
-    socket.join(roomName);
+  socket.on("join_room", (roomName) => {    
+    socket.join(roomName);    
     socket.to(roomName).emit("welcome");
+    
   });
-
+ 
   // 아래 offer, answer, ice : WebRTC peer-to-peer 연결을 위해 socket으로 시그널링
 
   // (5) offer 내용을 전달받고 같은 방에 offer를 보낸다.
@@ -127,8 +128,7 @@ wsServer.on("connection", (socket) => {
   });
 
   // 이하 text chat을 위한 socket 통신
-  socket.on("new_message", (msg, roomName, done) => {
-    console.log(socket.id);
+  socket.on("new_message", (msg, roomName, done) => {    
     const socketId = socket.id
     socket.to(roomName).emit("new_message", msg, socketId);
     done();
