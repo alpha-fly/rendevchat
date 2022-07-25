@@ -100,7 +100,8 @@ header{
     border-radius: 20px;
     width: 400px;
     height: 300px;
-    position: absolute;    
+    margin: auto;
+    
 }
 
 #peerFace{
@@ -108,10 +109,10 @@ header{
     width: 890px; 
     height: 617px;
     z-index: -10px; */
-    border-radius: 20px;
-    position: absolute;
+    border-radius: 20px;    
     width: 400px; 
     height: 300px;    
+    margin: auto;
 }
 
 .CameraButtonWrap{
@@ -125,8 +126,8 @@ header{
     width: 890px;
     height: 617px;
     display: flex;
-    /* justify-content: flex-start; */
-    /* align-items: flex-start; */   
+    justify-content: flex-start;
+    align-items: flex-start;   
 }
 
 #chat{
@@ -218,7 +219,7 @@ header{
 }
 
 .ChatText{
-    width: 306px;
+    width: 305px;
     height: 503px;
     /* border: 1px solid black; */
     overflow: scroll;
@@ -252,10 +253,10 @@ header{
 }
 
 #chatLog {
-    width: 306px;
+    width: 305px;
     height: 503px;
     /* height: 700px; */
-    overflow-y: auto;
+    overflow-y: scroll;
     padding: 10px;
     border-right: 1px solid black;
 }
