@@ -109,7 +109,8 @@ header{
     width: 890px; 
     height: 617px;
     z-index: -10px; */
-    position: relative;
+    border-radius: 20px;
+    position: absolute;
     width: 400px; 
     height: 300px;    
 }
