@@ -3,8 +3,8 @@ const socket = io();
 const myFace = document.getElementById("myFace");
 const muteBtn = document.getElementById("mute");
 const cameraBtn = document.getElementById("camera");
-const finishBtn = document.getElementById("finish"); // 인터뷰 종료버튼
 const camerasSelect = document.getElementById("cameras");
+// const finishBtn = document.getElementById("finish"); // 인터뷰 종료버튼
 
 const call  = document.getElementById("call")
 const chat  = document.getElementById("chat")
@@ -67,7 +67,7 @@ function handleMuteClick () {
     myStream.getAudioTracks().forEach((track) => (track.enabled = !track.enabled));
     if (!muted) {
         // document.getElementById("img").src = "../image/mute.svg";
-        // 이미지 에셋 번달 받은 후 이미지 수정 예정
+        // 이미지 에셋 전달 받은 후 이미지 수정 예정
         muteBtn.innerText = "음소거"        
         muted = true;
     } else {
@@ -98,19 +98,20 @@ async function handleCameraChange() {
     }
 }
 
-// 인터뷰 종료 버튼 클릭시 : Video, Audio 끄고 종료 버튼 감추고 alert 띄워준다.
-async function handleFinishInterview() {  
-    finishBtn.hidden = true;
-    myStream.getAudioTracks().forEach((track) => (track.enabled = false));
-    myStream.getVideoTracks().forEach((track) => (track.enabled = false));
-    alert("인터뷰 완료를 확인했습니다. 좋은 결과 기다릴게요 :)")
-    socket.emit("finish_interview", roomName);  
-}
+// (기능 삭제함)인터뷰 종료 버튼 클릭시 : Video, Audio 끄고 종료 버튼 감추고 alert 띄워준다 
+// 해당 기능을 영상통화가 아닌, 메인 서비스의 "내 모집현황"에서 처리하기로 했으므로 기능 제외합니다.
+// async function handleFinishInterview() {  
+//     finishBtn.hidden = true;
+//     myStream.getAudioTracks().forEach((track) => (track.enabled = false));
+//     myStream.getVideoTracks().forEach((track) => (track.enabled = false));
+//     alert("인터뷰 완료를 확인했습니다. 좋은 결과 기다릴게요 :)")
+//     socket.emit("finish_interview", roomName);  
+// }
 
 muteBtn.addEventListener("click", handleMuteClick);
 cameraBtn.addEventListener("click", handleCameraClick);
-// finishBtn.addEventListener("click", handleFinishInterview) // 인터뷰 종료 버튼에 이벤트 배정
 camerasSelect.addEventListener("input", handleCameraChange);
+// finishBtn.addEventListener("click", handleFinishInterview) // 인터뷰 종료 버튼에 이벤트 배정
 
 
 // welcome Form (choose a room)
@@ -154,10 +155,10 @@ async function handleWelcomeSubmit(event) {
     input.value=""
 }
 
-
+// 아래 코드에서 initCall과 socket.emit(join room)의 순서를 바꾸면, 캠이 없는 경우 소켓 연결이 되지 않는다. 
 socket.on("right_code", async (roomName) => {
-    await initCall();
-    socket.emit("join_room", roomName );                
+    socket.emit("join_room", roomName );  
+    await initCall();                  
 });
 
 socket.on("wrong_code", async (errormessage) => {
