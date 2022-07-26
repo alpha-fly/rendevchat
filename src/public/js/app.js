@@ -13,7 +13,7 @@ call.hidden = true;
 chat.hidden = true;
 
 let myStream;
-let muted = false;
+let muted = false; // 여기 설정 잘 보기
 let cameraOff = false;
 let roomName;
 let myPeerConnection;
@@ -70,10 +70,10 @@ function handleMuteClick() {
   if (!muted) {
     // document.getElementById("img").src = "../image/mute.svg";
     // 이미지 에셋 전달 받은 후 이미지 수정 예정
-    muteBtn.innerText = "음소거";
+    muteBtn.innerText = "MicOn";
     muted = true;
   } else {
-    muteBtn.innerText = "음켜기";
+    muteBtn.innerText = "MicOff";
     muted = false;
   }
 }
@@ -84,10 +84,10 @@ function handleCameraClick() {
     .getVideoTracks()
     .forEach((track) => (track.enabled = !track.enabled));
   if (cameraOff) {
-    cameraBtn.innerText = "캠끄기";
+    cameraBtn.innerText = "CamOff";
     cameraOff = false;
   } else {
-    cameraBtn.innerText = "캠켜기";
+    cameraBtn.innerText = "CamOn";
     cameraOff = true;
   }
 }
@@ -216,7 +216,7 @@ socket.on("ice", (ice) => {
 function addMessage(message, socketId) {
   console.log(message, socketId);
 
-  if (socketId === socket.Id) {
+  if (socketId === socket.id) {
     let $msg = document.createElement("div");
     $msg.innerHTML = `<div class="myMsg msgEl"><span class="msg">${message}</span></div>`;
     chatLog.appendChild($msg);
@@ -234,7 +234,7 @@ async function handleMessageSubmit(event) {
   const value = input.value;
 
   socket.emit("new_message", input.value, roomName, () => {
-    addMessage(value);
+    addMessage(value, socket.id);
   });
   input.value = "";
 }
@@ -243,11 +243,14 @@ socket.on("new_message", (msg, socketId) => {
   addMessage(msg, socketId);
 });
 
-// socket.on("bye", (left, newCount) => {
-//     const h3 = room.querySelector("h3");
-//     h3.innerText = `Room ${roomName} (${newCount})`;
-//     addMessage(`${left} left...`)
-// })
+socket.on("bye", (socketId) => {
+  console.log (socketId, socket.id);
+  if (socketId !== socket.id) {    
+    peerFace.srcObject = null;
+  }
+
+
+});
 
 // WebRTC Code
 function makeConnection() {
