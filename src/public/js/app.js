@@ -141,12 +141,6 @@ async function initCall() {
   }
 }
 
-// 사용자의 캠 유무를 확인하고 WebRTC 연결을 시도한다. 캠 없으면 이후 절차 X
-// async function initCam() {
-//     await getMedia();
-//     makeConnection();
-// }
-
 function handleChange(e) {
   const test1 = document.getElementById("CodeInput1").value;
   const test2 = document.getElementById("CodeInput2").value;
