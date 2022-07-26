@@ -10,15 +10,12 @@
 </head>
 
 <script>
-
 function move(current, event) {
     console.log(current);
     console.log(event)    
     const nextFocus = current.id !== "CodeInput6" ? "CodeInput" + (parseInt(current.id.split("CodeInput")[1])+1) : "CodeInput6"        
     document.getElementById(nextFocus).focus();
 }
-
-
 </script>
 
 <body>
