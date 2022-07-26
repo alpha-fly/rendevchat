@@ -184,9 +184,11 @@ wsServer.on("connection", (socket) => {
   //   });
   // });  
 
-  // socket.on("disconnecting", () => {
-  //     socket.rooms.forEach((room) => socket.to(room).emit("bye", socket.nickname));
-  // });
+  socket.on("disconnecting", () => {    
+    const rooms = Array.from(socket.rooms)
+    console.log(rooms, rooms[0], " is leaving ", rooms[1]);
+    socket.to(rooms[1]).emit("bye", rooms[0]);
+  });
 
   // socket.on("disconnect", () => {
   //     wsServer.sockets.emit("room_change", publicRooms());
