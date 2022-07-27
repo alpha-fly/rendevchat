@@ -6,8 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>renDev</title>
-    <link rel="stylesheet" href="public/js/test.css">
+    <link rel="stylesheet" href="public/js/test.css">    
 </head>
+
+<script>
+function move(current, event) {
+    console.log(current);
+    console.log(event)    
+    const nextFocus = current.id !== "CodeInput6" ? "CodeInput" + (parseInt(current.id.split("CodeInput")[1])+1) : "CodeInput6"        
+    document.getElementById(nextFocus).focus();
+}
+</script>
 
 <body>
     <div id="welcome">
@@ -18,18 +27,18 @@
                     <span id="GuideText">면접코드는 지원창에서 확인하실 수 있습니다</span>
                 </div>
             </header>
-            <div class="InputWrap">
-                <input onchange="handleChange()" id="CodeInput1" maxlength="1" onchange="onchange" required class="InputCode" autofocus />
+            <div class="InputWrap">              
+                <input onchange="handleChange()" id="CodeInput1" maxlength="1" required class="InputCode" onkeyup="move(this, event)" />
                 <hr class="InputBar" />
-                <input onchange="handleChange()" id="CodeInput2" maxlength="1" required class="InputCode" />
+                <input onchange="handleChange()" id="CodeInput2" maxlength="1" required class="InputCode" onkeyup="move(this, event)" />
                 <hr class="InputBar" />
-                <input onchange="handleChange()" id="CodeInput3" maxlength="1" required class="InputCode" />
+                <input onchange="handleChange()" id="CodeInput3" maxlength="1" required class="InputCode" onkeyup="move(this, event)" />
                 <hr class="InputWhiteBar" />
-                <input onchange="handleChange()" id="CodeInput4" maxlength="1" required class="InputCode" />
+                <input onchange="handleChange()" id="CodeInput4" maxlength="1" required class="InputCode" onkeyup="move(this, event)" />
                 <hr class="InputBar" />
-                <input onchange="handleChange()" id="CodeInput5" maxlength="1" required class="InputCode" />
+                <input onchange="handleChange()" id="CodeInput5" maxlength="1" required class="InputCode" onkeyup="move(this, event)" />
                 <hr class="InputBar" />
-                <input onchange="handleChange()" id="CodeInput6" maxlength="1" required class="InputCode" />
+                <input onchange="handleChange()" id="CodeInput6" maxlength="1" required class="InputCode" onkeyup="move(this, event)" />
             </div>
             <div>
                 <div class="ButtonWrap">
@@ -44,27 +53,57 @@
                 <video id="peerFace" autoplay playsinline></video>
                 <video id="myFace" autoplay muted playsinline></video>
                 <div class="CameraButtonWrap">
-                    <button id="mute">음소거</button>
-                    <button id="camera">캠끄기</button>
+                    <button id="mute">MicOff</button>
+                    <button id="camera">CamOff</button>
                     <select id="cameras"></select>
                 </div>
-            </div>
-            
+            </div>            
 
             <div id="chat">
-                <form id="msg">
-                    <div class="ChatTop"><span class="NickText">우주방랑자</span><button id="finish">인터뷰 완료</button></div>
-                    <div class="ChatText"><ul></ul></div>
-                    <div class="ChatInput">
-                        <input class="InputText" required type="text">
-                        <button class="SendMSGbtn">Send</button>
-                    </div>
+                <div class="ChatTop">
+                    <span class="NickText">renDev Interview</span>
+                    <!-- <button id="finish">인터뷰 완료</button> -->
+                </div>
+                <div id="chatLog">                                      
+                </div>
+                <form id="msg">    
+                    <div class="ChatInput"><input class="InputText" required type="text"><button class="SendMSGbtn">Send</button></div>
+
                 </form>
-            </div>
+            </div>            
         </div>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/public/js/app.js"></script>
+<script>
+    const codeInput1 = document.querySelector('input[id="CodeInput1"]')    
+    codeInput1.addEventListener('focus', (event) => {           
+    event.target.value = null;
+    })
+    const codeInput2 = document.querySelector('input[id="CodeInput2"]')    
+    codeInput2.addEventListener('focus', (event) => {           
+    event.target.value = null;
+    })
+    const codeInput3 = document.querySelector('input[id="CodeInput3"]')    
+    codeInput3.addEventListener('focus', (event) => {           
+    event.target.value = null;
+    })
+    const codeInput4 = document.querySelector('input[id="CodeInput4"]')    
+    codeInput4.addEventListener('focus', (event) => {           
+    event.target.value = null;
+    })
+    const codeInput5 = document.querySelector('input[id="CodeInput5"]')    
+    codeInput5.addEventListener('focus', (event) => {           
+    event.target.value = null;
+    })
+    const codeInput6 = document.querySelector('input[id="CodeInput6"]')    
+    codeInput6.addEventListener('focus', (event) => {           
+    event.target.value = null;
+    })
+</script>    
+
+
+    
 </body>
 </html>

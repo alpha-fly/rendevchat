@@ -92,18 +92,27 @@ header{
 }
 
 #myFace{
-    border-radius: 20px;
+    /* border-radius: 20px;
     width: 280px;
     height: 175px;
     position: absolute;
-    margin-top: 30px;
+    margin-top: 30px; */
+    border-radius: 20px;
+    width: 400px;
+    height: 300px;
+    margin: auto;
+    
 }
 
-#peerFacce{
-    position: relative;
+#peerFace{
+    /* position: relative;
     width: 890px; 
     height: 617px;
-    z-index: -10px;
+    z-index: -10px; */
+    border-radius: 20px;    
+    width: 400px; 
+    height: 300px;    
+    margin: auto;
 }
 
 .CameraButtonWrap{
@@ -118,7 +127,7 @@ header{
     height: 617px;
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: flex-start;   
 }
 
 #chat{
@@ -210,7 +219,7 @@ header{
 }
 
 .ChatText{
-    width: 306px;
+    width: 305px;
     height: 503px;
     /* border: 1px solid black; */
     overflow-y: scroll;
@@ -226,4 +235,48 @@ header{
 ::-webkit-scrollbar {
     display: none;
   }
+
+
+
+
+/* ---------- 재영: 이하 채팅방 꾸미기용 CSS 코드입니다 ----------
+chatLog는 채팅 내용이 추가되어 스크롤되는 부분의 요소이고,
+myMsg, anotherMsg 등 그 아래 요소들은 index.ejs에는 나타나지 않지만
+채팅을 칠 때 해당 채팅 내용을 꾸며주기 위한 부분들입니다. */
+#chatLog {
+    width: 305px;
+    height: 503px;
+    /* height: 700px; */
+    overflow-y: scroll;
+    padding: 10px;
+    border-right: 1px solid black;
+}
+
+.myMsg {
+    text-align: right;
+}
+
+.anotherMsg {
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.msg {
+    display: inline-block;
+    border-radius: 15px;
+    padding: 7px 15px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+
+}
+
+.anotherMsg > .msg {
+    background-color: #f1f0f0;
+
+}
+
+.myMsg > .msg {
+    background-color: #0084FF;
+    color: #fff;
+}
 
