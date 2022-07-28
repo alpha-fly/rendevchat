@@ -5,6 +5,41 @@ header{
     align-items: center;
 }
 
+*{
+    font-family: ;
+}
+
+body{
+    padding: 0px;
+    margin: 0px;;
+}
+
+.NaviBar{
+    /* border: 1px solid black; */
+    width: 100%;
+    height: 98px;
+    margin-top: -10px;
+    background-color: #303032;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.LogoDivWrap{
+    width: 1600px;
+    /* border: 1px solid white; */
+}
+
+.LogoWrap{
+    background-image: url('image/logo.svg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* border: 1px solid white; */
+    width: 150px;
+    height: 50px;
+}
+
 #welcome{
     display: flex;
     flex-flow: column nowrap;
@@ -24,7 +59,7 @@ header{
     display: flex;
     flex-flow: column nowrap;
     justify-self: center;
-    align-items: cen;
+    align-items: center;
 }
 
 .InputWrap{
@@ -77,18 +112,40 @@ header{
 
 #call{
     /* border: 1px solid black; */
-    width: 1200px;
-    height: 617px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* width: 1600px; */
+    justify-content: center;
+    align-items: center;
 }
+
+
+.AllChatWrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 100%; */
+    /* border: 1px solid black; */
+    position: relative;
+}
+
+
 
 .ChatWrap{
     /* border: 1px solid black; */
-    width: 1200px;
-    height: 617px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    margin-left: -120px;
+    width: 1600px;
+    height: 750px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
+    position: absolute;
+    top: 0px;
+    left: -665px;
 }
 
 #myFace{
@@ -97,9 +154,10 @@ header{
     height: 175px;
     position: absolute;
     margin-top: 30px; */
-    border-radius: 20px;
-    width: 400px;
-    height: 300px;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+    width: 590px;
+    height: 450px;
     margin: auto;
     
 }
@@ -109,31 +167,36 @@ header{
     width: 890px; 
     height: 617px;
     z-index: -10px; */
-    border-radius: 20px;    
-    width: 400px; 
-    height: 300px;    
+    border-radius: 10px;    
+    width: 590px; 
+    height: 450px;    
     margin: auto;
+    /* border: 1px solid black; */
 }
 
 .CameraButtonWrap{
     /* border: 1px solid black; */
-    z-index: 10px;
-    margin-top: 530px;
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
 }
 
 .FaceWrap{
-    border: 1px solid black;
-    width: 890px;
-    height: 617px;
+    /* border: 1px solid black; */
+    width: 1195px;
+    height: 750px;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;   
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;   
 }
 
 #chat{
     /* border: 1px solid black; */
-    width: 305px;
-    height: 617px;
+    width: 400px;
+    height: 750px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
@@ -147,34 +210,41 @@ header{
 
 #mute{
     border-radius: 8px;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 60px;
     border: none;
     outline: none;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* background-image: url('image/IconBackground.svg'); */
     color: white;
 }
 
 #camera{
     border-radius: 8px;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 60px;
     border: none;
     outline: none;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
 }
 
+#cameras{
+    width: 320px;
+}
+
 .ChatTop{
-    border: 1px solid black;
-    width: 305px;
-    height: 70px;
+    /* border: 1px solid black; */
+    width: 400px;
+    height: 60px;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
-    border-top-left-radius: 4px;
+    color: white;
+    /* border-top-left-radius: 4px; */
     border-top-right-radius: 4px;
+    background: #AE97E3;
 }
 
 #finish{
@@ -190,39 +260,43 @@ header{
 }
 
 .ChatInput {
-    border: 1px solid black;
-    width: 305px;
-    height: 40px;
+    border: 0.5px solid #d9d9d9;
+    width: 400px;
+    height: 39px;
     border-radius: 4px;
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
 .SendMSGbtn{
-    padding: 11px 16px 11px 16px;
+    padding: 13px 20px 13px 20px;
     font-size: 12px;
     font-weight: 500;
     color: white;
-    background-color: #383838;
+    background: #77C3E7;
     border-radius: 4px;
     outline: none;
     border: none;
 }
 
 .InputText{
-    padding: 10px;
+    padding: 8px;
     border: none;
     outline: none;
-    width: 200px;
+    width: 305px;
+    /* border: 1px solid black; */
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19px;
 }
 
 .ChatText{
     width: 305px;
     height: 503px;
     /* border: 1px solid black; */
-    overflow: scroll;
+    overflow-y: scroll;
     overflow-x: hidden;
     border-right: 1px solid black;
 }
@@ -237,6 +311,19 @@ header{
   }
 
 
+  select {
+      width: 200px; 
+      padding: .8em .5em; 
+      border: 1px solid #999;
+      font-family: inherit;  
+      background: url('arrow.jpg') no-repeat 95% 50%; 
+      border-radius: 0px; 
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;}
+
+
+
 
 
 /* ---------- 재영: 이하 채팅방 꾸미기용 CSS 코드입니다 ----------
@@ -244,39 +331,57 @@ chatLog는 채팅 내용이 추가되어 스크롤되는 부분의 요소이고,
 myMsg, anotherMsg 등 그 아래 요소들은 index.ejs에는 나타나지 않지만
 채팅을 칠 때 해당 채팅 내용을 꾸며주기 위한 부분들입니다. */
 #chatLog {
-    width: 305px;
-    height: 503px;
+    width: 400px;
+    height: 649px;
     /* height: 700px; */
     overflow-y: scroll;
-    padding: 10px;
-    border-right: 1px solid black;
+    background: linear-gradient(115.2deg, rgba(174, 151, 227, 0.3) 0%, rgba(119, 195, 231, 0.3) 77.66%);
+    /* padding: 10px; */
+    /* border: 1px solid black; */
 }
+
 
 .myMsg {
     text-align: right;
 }
+
 
 .anotherMsg {
     text-align: left;
     margin-bottom: 5px;
 }
 
+
 .msg {
     display: inline-block;
-    border-radius: 15px;
-    padding: 7px 15px;
+    border-radius: 5px;
+    padding: 8px 15px;
     margin-bottom: 10px;
     margin-top: 5px;
-
+    max-width: 250px;
+    box-shadow: 1px 2px 2px 1px gray;
+    margin-right: 7px;
+    height: auto;
+    word-break: break-all;
 }
+
 
 .anotherMsg > .msg {
-    background-color: #f1f0f0;
-
+    background-color: #ECE0EC;
+    color: #303032;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19px;
 }
 
+
 .myMsg > .msg {
-    background-color: #0084FF;
-    color: #fff;
+    background-color: #EAF3FA;
+    color: #303032;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19px;
 }
 

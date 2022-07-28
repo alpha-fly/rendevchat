@@ -68,12 +68,13 @@ function handleMuteClick() {
     .getAudioTracks()
     .forEach((track) => (track.enabled = !track.enabled));
   if (!muted) {
-    // document.getElementById("img").src = "../image/mute.svg";
-    // 이미지 에셋 전달 받은 후 이미지 수정 예정
-    muteBtn.innerText = "MicOn";
+    const micOn = '<img src = "/public/js/image/micOn.svg">';
+    muteBtn.innerHTML = micOn;
     muted = true;
+
   } else {
-    muteBtn.innerText = "MicOff";
+    const testoff = '<img src = "/public/js/image/micOff.svg">';
+    muteBtn.innerHTML = testoff;
     muted = false;
   }
 }
@@ -84,10 +85,13 @@ function handleCameraClick() {
     .getVideoTracks()
     .forEach((track) => (track.enabled = !track.enabled));
   if (cameraOff) {
-    cameraBtn.innerText = "CamOff";
+    const camOn = '<img src = "/public/js/image/camon.svg">';
+    cameraBtn.innerHTML = camOn;
     cameraOff = false;
+
   } else {
-    cameraBtn.innerText = "CamOn";
+    const camOff = '<img src = "/public/js/image/camoff.svg">';
+    cameraBtn.innerHTML = camOff;
     cameraOff = true;
   }
 }

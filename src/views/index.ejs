@@ -19,11 +19,16 @@ function move(current, event) {
 </script>
 
 <body>
+    <div class="NaviBar">
+        <div class="LogoDivWrap">
+         <div class="LogoWrap"></div> 
+        </div>
+    </div>
     <div id="welcome">
         <form>
             <header>
                 <div class="GuideTextWrap">
-                    <span id="GuideText">renDev demo: 이어폰/헤드셋 사용을 부탁드립니다</span>
+                    <span id="GuideText">이어폰/헤드셋 사용을 부탁드립니다</span>
                     <span id="GuideText">면접코드는 지원창에서 확인하실 수 있습니다</span>
                 </div>
             </header>
@@ -48,14 +53,19 @@ function move(current, event) {
     </div>
 
     <div id="call">
+        <div class="AllChatWrap"> 
         <div class="ChatWrap">
             <div class="FaceWrap">
-                <video id="peerFace" autoplay playsinline></video>
-                <video id="myFace" autoplay muted playsinline></video>
+                <div>
+                    <video id="peerFace" autoplay playsinline></video>
+                    <video id="myFace" autoplay muted playsinline></video>
+                </div>
                 <div class="CameraButtonWrap">
-                    <button id="mute">MicOff</button>
-                    <button id="camera">CamOff</button>
                     <select id="cameras"></select>
+                    <div>
+                        <button id="mute"><img src = "/public/js/image/micOn.svg"></button>
+                        <button id="camera"><img src = "/public/js/image/camon.svg"></button>
+                    </div>
                 </div>
             </div>            
 
@@ -67,10 +77,14 @@ function move(current, event) {
                 <div id="chatLog">                                      
                 </div>
                 <form id="msg">    
-                    <div class="ChatInput"><input class="InputText" required type="text"><button class="SendMSGbtn">Send</button></div>
+                    <div class="ChatInput">
+                        <input class="InputText" required type="text">
+                        <button class="SendMSGbtn">Send</button>
+                    </div>
                 </form>
             </div>            
         </div>
+    </div>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
