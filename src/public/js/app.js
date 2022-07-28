@@ -68,13 +68,13 @@ function handleMuteClick() {
     .getAudioTracks()
     .forEach((track) => (track.enabled = !track.enabled));
   if (!muted) {
-    const micOn = '<img src = "/public/js/image/micOn.svg">';
+    const micOn = '<img src = "/public/js/image/micOff.svg">';
     muteBtn.innerHTML = micOn;
     muted = true;
 
   } else {
-    const testoff = '<img src = "/public/js/image/micOff.svg">';
-    muteBtn.innerHTML = testoff;
+    const micoff = '<img src = "/public/js/image/micOn.svg">';
+    muteBtn.innerHTML = micoff;
     muted = false;
   }
 }
