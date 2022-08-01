@@ -60,7 +60,7 @@ renDev Interview 바로가기 [https://rendev.click]
 ## 4. 트러블 슈팅 (자체 TURN 서버 구축)
 `요구사항`
 
-WebRTC를 통한 영상통화 기능을 구현하기 위해, Peer to Peer 연결 및 중계 전송을 담당해줄 STUN/TURN 서버를 설정해야 함. 
+WebRTC를 통한 영상통화 기능을 구현하기 위해, Peer to Peer 연결 및 중계 전송을 담당해줄 STUN/TURN 서버를 설정해야 함. STUN/TURN 서버 설정이 미흡하거나 설정한 서버가 제대로 동작하지 않는 경우 ICE candidate 교환에 실패하며 사용자간 mediaStream 교환이 이루어질 수 없음.
 <br><br>
 
 `선택지`
