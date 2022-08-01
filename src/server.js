@@ -2,7 +2,7 @@ import http from "http";
 import { Server } from "socket.io";
 import { instrument } from "@socket.io/admin-ui";
 import express from "express";
-import mysql from "mysql2";  
+import mysql from "mysql2";
 import ejs from "ejs";
 import path from "path";
 require("dotenv").config();
@@ -37,26 +37,23 @@ const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: "root",
   password: process.env.DB_PASSWORD,
-  database: "rendevSQL",  
+  database: "rendevSQL",
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
 });
 
-wsServer.on("connection", (socket) => {
-  // (1) 소켓 접속되면 일단 nickname 을 Anonymous로 디폴트 설정해줌 : 닉네임 사용 안하므로 해당 코드는 삭제합니다
-  
-
-  // 모든 socket 이벤트에 대한 log 표시 (필요시에만 주석을 풀어 사용할 것)
+wsServer.on("connection", (socket) => { 
+  // 모든 socket 이벤트에 대한 log 표시 (socket 점검 필요시에만 주석을 풀어 사용할 것)
   // socket.onAny((event) => {
   //     console.log(wsServer.sockets.adapter);
   //     console.log(`Socket Event : ${event}`)
   // });
 
-  // (3-1) 입력된 interview code가 옳은지 검증한다 (DB의 application 테이블에 등록된 코드인가?)
+  // (2) 입력된 interview code가 옳은지 검증한다 (DB의 application 테이블에 등록된 코드인가?)
+  // 코드 검증 결과에 따라 app.js에서 (3-1) right_code 또는 (3-2) wrong_code로 간다.
   socket.on("check_code", (code) => {
-   
-    pool.getConnection(function(err, conn){
+    pool.getConnection(function (err, conn) {
       conn.query(
         "SELECT interviewCode, schedule, status from application",
         (error, results) => {
@@ -69,55 +66,57 @@ wsServer.on("connection", (socket) => {
           const interview = results.find(
             (application) => application["interviewCode"] === code
           );
-          
+
           if (!interview) {
             const errormessage = "인터뷰 코드가 바르지 않습니다.";
             socket.emit("wrong_code", errormessage);
             pool.releaseConnection(conn);
             return;
-          }                    
+          }
 
-          // -----( 7/16 MVP 시간조건 off )------- 인터뷰 예약시간 기준 "15분전 ~ 3시간 후" 사이일 때만 인터뷰 입장이 가능.        
-          // const currentTime = new Date();          
+          // -----( user test : 시간조건 off )------- 인터뷰 예약시간 기준 "15분전 ~ 3시간 후" 사이일 때만 인터뷰 입장이 가능.
+
+          // const currentTime = new Date();
           // const fifteenMinEarlier = new Date( (Date.parse(interview["schedule"])) - 1000 * 60 * 15 );
-          // const threeHrslater = new Date( (Date.parse(interview["schedule"])) + 1000 * 60 * 60 * 3 );
+          // const threeHrsLater = new Date( (Date.parse(interview["schedule"])) + 1000 * 60 * 60 * 3 );
 
           // console.log("현재시각 :", currentTime)
           // console.log("인터뷰시간:", interview["schedule"])
           // console.log("15분 전  :", fifteenMinEarlier)
-          // console.log("3시간 후 :", threeHrslater)        
+          // console.log("3시간 후 :", threeHrsLater)
 
-          // if (
-          //   currentTime < fifteenMinEarlier ||
-          //   currentTime > threeHrslater
-          // ) {
-          //   const errormessage =
-          //     `인터뷰 예약시간 기준 "15분 전 ~ 3시간 후" 사이에만 입장 가능합니다.`;
+          // if (currentTime < fifteenMinEarlier || currentTime > threeHrsLater) {
+          //   const errormessage = `인터뷰 예약시간 기준 "15분 전 ~ 3시간 후" 사이에만 입장 가능합니다.`;
+          //   socket.emit("wrong_code", errormessage);
+          //   pool.releaseConnection(conn);
+          //   return;
+          // }
 
-          //-----( 7/16 MVP 시간조건 off )-----------------------------------------------
+          //-----( user test : 시간조건 off )-----------------------------------------------
 
           // 위 두 조건을 모두 통과했다면 영상통화방으로 입장한다.
           socket.emit("right_code", code);
-          // pool.releaseConnection(conn);
-      })  
-    });   
+          pool.releaseConnection(conn);
+        }
+      );
+    });
   });
 
-  // (3-2) 전달받은 room name 으로 입장한다 (없는 경우 room 만들면서 입장)
-  socket.on("join_room", (roomName) => {    
-    socket.join(roomName);    
-    console.log("JOIN ROOM excuted")
-    socket.to(roomName).emit("welcome");    
+  // (4) 전달받은 room name 으로 입장한다 (없는 경우 room 만들면서 입장)
+  socket.on("join_room", (roomName) => {
+    socket.join(roomName);
+    console.log("JOIN ROOM excuted");
+    socket.to(roomName).emit("welcome");
   });
- 
+
   // 아래 offer, answer, ice : WebRTC peer-to-peer 연결을 위해 socket으로 시그널링
 
-  // (5) offer 내용을 전달받고 같은 방에 offer를 보낸다.
+  // (6) offer 내용을 전달받고 같은 방에 offer를 보낸다.
   socket.on("offer", (offer, roomName) => {
     socket.to(roomName).emit("offer", offer);
   });
 
-  // (7) answer의 내용을 전달받아 같은 방에 answer를 보낸다.
+  // (8) answer의 내용을 전달받아 같은 방에 answer를 보낸다.
   socket.on("answer", (answer, roomName) => {
     socket.to(roomName).emit("answer", answer);
   });
@@ -127,18 +126,19 @@ wsServer.on("connection", (socket) => {
   });
 
   // 이하 text chat을 위한 socket 통신
-  socket.on("new_message", (msg, roomName, done) => {    
-    const socketId = socket.id
+  socket.on("new_message", (msg, roomName, done) => {
+    const socketId = socket.id;
     socket.to(roomName).emit("new_message", msg, socketId);
     done();
-  });  
+  });
 
   // 인터뷰 종료 버튼을 눌렀을 때 DB에 상태변화 적용해주기 : 기능 OFF
-  // 영상채팅 화면 말고, 마이페이지의 "내 모집현황" 에서 프로젝트 팀장이 처리하기로 함. 
+  // 영상채팅 화면 말고, 마이페이지의 "내 모집현황" 에서 프로젝트 게시글 주인이 처리하기로 함.
+
   // socket.on("finish_interview", (roomName) => {
   //   pool.getConnection(function(err, conn){
   //     pool.query(
-  //       `SELECT interviewCode, status 
+  //       `SELECT interviewCode, status
   //             from application
   //             WHERE interviewCode="${roomName}"`,
   //       (error, results) => {
@@ -154,8 +154,8 @@ wsServer.on("connection", (socket) => {
   //           results[0]["status"] !== "finish(2)"
   //         ) {
   //           pool.query(
-  //             `UPDATE application 
-  //                       SET status="finish(1)" 
+  //             `UPDATE application
+  //                       SET status="finish(1)"
   //                       WHERE interviewCode="${roomName}"`,
   //             (error, results) => {
   //               if (error) {
@@ -168,8 +168,8 @@ wsServer.on("connection", (socket) => {
   //         // status가 finish(1)이라면, finish(2)로 바꿔준다.
   //         } else if (results[0]["status"] == "finish(1)") {
   //           pool.query(
-  //             `UPDATE application 
-  //                       SET status="finish(2)" 
+  //             `UPDATE application
+  //                       SET status="finish(2)"
   //                       WHERE interviewCode="${roomName}"`,
   //             (error, results) => {
   //               if (error) {
@@ -182,10 +182,10 @@ wsServer.on("connection", (socket) => {
   //     )
   //     pool.releaseConnection(conn);
   //   });
-  // });  
+  // });
 
-  socket.on("disconnecting", () => {    
-    const rooms = Array.from(socket.rooms)
+  socket.on("disconnecting", () => {
+    const rooms = Array.from(socket.rooms);
     console.log(rooms, rooms[0], " is leaving ", rooms[1]);
     socket.to(rooms[1]).emit("bye", rooms[0]);
   });
