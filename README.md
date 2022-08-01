@@ -105,3 +105,9 @@ coturn 라이브러리를 활용하면 매우 쉽게 EC2 인스턴스에 TURN �
 
 * coturn 라이브러리 바로가기 [https://github.com/coturn/coturn] 
 * coturn 설정 방법 참고 [https://kostya-malsev.medium.com/set-up-a-turn-server-on-aws-in-15-minutes-25beb145bc77]
+
+<br>
+<br>
+
+🎁 좋은 팀원을 만나게 되실 거에요, 
+renDev 드림.
