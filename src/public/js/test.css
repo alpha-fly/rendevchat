@@ -6,7 +6,7 @@ header{
 }
 
 *{
-    font-family: ;
+    font-family: 'IBM Plex Sans KR', sans-serif; 
 }
 
 body{
@@ -270,7 +270,7 @@ body{
 }
 
 .SendMSGbtn{
-    padding: 13px 20px 13px 20px;
+    padding: 10px 20px 10px 20px;
     font-size: 12px;
     font-weight: 500;
     color: white;
@@ -278,6 +278,7 @@ body{
     border-radius: 4px;
     outline: none;
     border: none;
+    height: 40px;
 }
 
 .InputText{
@@ -301,7 +302,7 @@ body{
 }
 
 .NickText{
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
 }
 
@@ -362,6 +363,7 @@ myMsg, anotherMsg 등 그 아래 요소들은 index.ejs에는 나타나지 않�
     margin-right: 7px;
     margin-left: 7px;
     height: auto;
+    line-height: 18px;
     word-break: break-all;
 }
 
