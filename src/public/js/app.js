@@ -13,7 +13,7 @@ call.hidden = true;
 chat.hidden = true;
 
 let myStream;
-let muted = false; // 여기 설정 잘 보기
+let muted = false; 
 let cameraOff = false;
 let roomName;
 let myPeerConnection;
@@ -157,7 +157,7 @@ function handleChange(e) {
   return (testtwo = testall.join(""));
 }
 
-// (2) interview code(room name)을 입력받고 join_room에 전달한다.
+// (1) interview code(room name)을 입력받고 check_code에 전달한다.
 async function handleWelcomeSubmit(event) {
   event.preventDefault();
   const input = welcomeForm.querySelector("input");
@@ -167,11 +167,16 @@ async function handleWelcomeSubmit(event) {
   input.value = "";
 }
 
+// (3-1) 알맞은 interview code 라면 인터뷰 방에 입장하도록 한다.
+// initCall 함수를 따라가면 getMedia 함수와 makeConnection 함수가 있다.
+// 사용자의 카메라 정보를 읽어 자신의 미디어스트림을 형성하며, 
+// 자신의 <PeerConnection을 생성>하여 그 안에 미디어스트림을 담는다. 
 socket.on("right_code", async (roomName) => {
   await initCall();
   socket.emit("join_room", roomName);
 });
 
+// (3-2) interview code가 틀리거나 시간이 맞지 않는 경우 에러 메시지 반환.
 socket.on("wrong_code", async (errormessage) => {
   alert(errormessage);
 });
@@ -181,7 +186,8 @@ welcomeForm.addEventListener("submit", handleWelcomeSubmit);
 
 //socket code part 1 : 영상채팅용 socket 통신 (WebRTC peer-to-peer 연결을 위한 부분)
 
-// (4) 방에 입장되었다. 시그널링을 시작함, offer의 내용을 만들어 서버에 보낸다.
+// (5) 방에 입장되었다. 시그널링을 시작함, 
+// 자신의 <PeerConnection>의 정보로 offer의 내용을 만들어 서버에 보낸다.
 socket.on("welcome", async () => {
   const offer = await myPeerConnection.createOffer();
   myPeerConnection.setLocalDescription(offer);
@@ -189,7 +195,7 @@ socket.on("welcome", async () => {
   socket.emit("offer", offer, roomName);
 });
 
-// (6) offer를 받았다. answer의 내용을 만들어 서버에 보낸다.
+// (7) offer를 받았다. answer의 내용을 만들어 서버에 보낸다.
 socket.on("offer", async (offer) => {
   console.log("received the offer");
   myPeerConnection.setRemoteDescription(offer);
@@ -199,12 +205,14 @@ socket.on("offer", async (offer) => {
   console.log("sent the answer");
 });
 
-// (8) answer까지 받았다. remote description 을 생성한다.
+// (9) answer까지 받았다. remote description 을 생성한다.
 socket.on("answer", (answer) => {
   console.log("received the answer");
   myPeerConnection.setRemoteDescription(answer);
 });
 
+// 방 입장시 실행되는 함수의 연계 initCall - makeConnection - handleIce 순서를 따라가면
+// ice candidate 교환 과정을 볼 수 있다. (socket.emit "ice"는 handleIce 함수 내에 있음)
 socket.on("ice", (ice) => {
   console.log("received candidate");
   myPeerConnection.addIceCandidate(ice);
@@ -251,6 +259,7 @@ socket.on("bye", (socketId) => {
 });
 
 // WebRTC Code
+// 아래 iceServers 설정 내에 직접 coturn을 사용하여 세팅한 TURN 서버 주소 및 정보를 입력했음.
 function makeConnection() {
   myPeerConnection = new RTCPeerConnection({
     iceServers: [
