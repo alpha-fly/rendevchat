@@ -13,7 +13,7 @@
 <br><br>
 
 ## 목차 
-1. [renDev 서비스 소개](#1.-renDev-서비스-소개)
+1. renDev 서비스 소개
 2. renDev Interview 소개
 3. 사용 기술 목록
 4. 트러블 슈팅
