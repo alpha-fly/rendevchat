@@ -48,7 +48,7 @@ renDev Interview 바로가기 [https://rendev.click]
 
 ## 3. 사용 기술 목록
 
-| 사용기술 | 기술 설명 |
+| 사용한 기술 | 기술 설명 |
 |----------|:-------------|
 | socket.io |  인터뷰 기능의 텍스트채팅 및 WebRTC 영상통화를 위한 시그널링, Room 기능을 통한 인터뷰 방 관리에 활용 |
 | WebRTC | 영상통화 기능의 구현, Kurento나 openVidu 등을 사용하지 않고 WebRTC의 기본 기능으로 해결 |
