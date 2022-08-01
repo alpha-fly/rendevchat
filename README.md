@@ -7,6 +7,8 @@
 <br>
 
 ## Preview
+<br>
+
 ![rendevchat_preview](https://user-images.githubusercontent.com/99331753/182060259-c2378b25-c00c-4fb5-a8f4-40c674f8741c.jpg)
 <br><br>
 
@@ -20,6 +22,12 @@
 <br>
 
 ## 1. renDev 서비스 소개
+<br>
+<div align="center">
+  <a href="https://rendev99.com"><img src="https://user-images.githubusercontent.com/99331753/182067451-f6ccd930-ec65-408e-9331-b507bd98ba33.jpg" width="450"/></a>
+</div>
+<br>
+
 renDev 서비스 바로가기 [https://rendev99.com] <br>
 * renDev는 "포트폴리오를 준비하는 개발자 및 디자이너를 위한 협업 프로젝트 매칭 서비스" 입니다. 
 * 프로젝트 아이디어는 있는데 혼자서 하기엔 버거울 때,
