@@ -36,6 +36,11 @@ renDev에서 마음에 맞는 프로젝트와 팀원을 만나 보세요 🙂
 
 <br>
 
+renDev 서비스 이용 안내 [https://bubble-dove-10c.notion.site/renDev-Tutorial-6298fdef96504da28773d47db3bef8cf]
+* 서비스 이용 방법에 대한 간단한 가이드를 작성해 두었습니다.
+
+<br>
+
 renDev 브로셔 페이지 [https://www.notion.so/renDev-b4158b77a39343feab8a22ef0fa3e30c] <br>
 
 * renDev는 웹개발자 교육 부트캠프 "항해99"의 최종 과정인 <실전 프로젝트>의 결과물입니다. 저희는 7기 B반 2조입니다 :)
