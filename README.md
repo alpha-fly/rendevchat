@@ -84,4 +84,8 @@ WebRTC를 통한 영상통화 기능을 구현하기 위해, Peer to Peer 연결
 `결정`
 
 coturn 라이브러리를 활용하면 매우 쉽게 EC2 인스턴스에 TURN 서버를 구축할 수 있음을 확인하고 이대로 구현함. 안정적인 영상통화 기능의 구현이 이루어진 것으로 확인하였음.
+<br>
+<br>
 
+* coturn 라이브러리 바로가기 [https://github.com/coturn/coturn] 
+* coturn 설정 방법 참고 [https://kostya-malsev.medium.com/set-up-a-turn-server-on-aws-in-15-minutes-25beb145bc77]
