@@ -28,7 +28,7 @@
 </div>
 <br>
 
-renDev 서비스 바로가기 [https://rendev99.com] <br>
+🚀 renDev 서비스 바로가기 [https://rendev99.com] <br>
 * renDev는 "포트폴리오를 준비하는 개발자 및 디자이너를 위한 협업 프로젝트 매칭 서비스" 입니다. 
 * 프로젝트 아이디어는 있는데 혼자서 하기엔 버거울 때,
 팀 프로젝트에 참여할 의욕은 있지만 아이디어가 마땅치 않을 때.
@@ -36,12 +36,12 @@ renDev에서 마음에 맞는 프로젝트와 팀원을 만나 보세요 🙂
 
 <br>
 
-renDev 서비스 이용 안내 [https://bubble-dove-10c.notion.site/renDev-Tutorial-6298fdef96504da28773d47db3bef8cf]
+💡 renDev 서비스 이용 안내 [https://bubble-dove-10c.notion.site/renDev-Tutorial-6298fdef96504da28773d47db3bef8cf]
 * 서비스 이용 방법에 대한 간단한 가이드를 작성해 두었습니다.
 
 <br>
 
-renDev 브로셔 페이지 [https://www.notion.so/renDev-b4158b77a39343feab8a22ef0fa3e30c] <br>
+📄 renDev 브로셔 페이지 [https://www.notion.so/renDev-b4158b77a39343feab8a22ef0fa3e30c] <br>
 
 * renDev는 웹개발자 교육 부트캠프 "항해99"의 최종 과정인 <실전 프로젝트>의 결과물입니다. 저희는 7기 B반 2조입니다 :)
 * **위 브로셔 페이지 링크에서 상세한 서비스 설명 및 팀원 정보를 확인하실 수 있습니다.** 
@@ -51,7 +51,7 @@ renDev 브로셔 페이지 [https://www.notion.so/renDev-b4158b77a39343feab8a22e
 <br>
 
 ## 2. renDev Interview 소개
-renDev Interview 바로가기 [https://rendev.click]
+🖥 renDev Interview 바로가기 [https://rendev.click]
 * renDev Interview는 개발자를 위한 프로젝트 매칭 서비스 renDev의 하위 기능으로서, 영상통화 및 텍스트 채팅을 통한 인터뷰 기능을 제공합니다.
 * 아무하고나 프로젝트하지 않는다! 프로젝트 협업을 위해 팀으로 모이기 전에 서로에 대해 미리 알아보는 시간을 가져보기 위함입니다.
 * mediaStream 교환을 위한 https 설정 편의성 등의 이유로 별도의 도메인을 설정했으나, renDev 메인 서비스 곳곳의 인터뷰 보기 버튼을 활용하여 입장이 가능합니다.
