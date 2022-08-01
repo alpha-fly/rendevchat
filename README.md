@@ -1,10 +1,12 @@
 # renDev Interview 
 
-![KakaoTalk_20220801_104018630](https://user-images.githubusercontent.com/99331753/182059737-b4fe3025-ff23-4420-9d92-3f3b7e4ccd0f.png)
-<br><br>
+
+<div align="center">
+  <a href="https://rendev99.com"><img src="https://user-images.githubusercontent.com/99331753/182059737-b4fe3025-ff23-4420-9d92-3f3b7e4ccd0f.png"/></a>
+</div>
+<br>
 
 ## Preview
-
 ![rendevchat_preview](https://user-images.githubusercontent.com/99331753/182060259-c2378b25-c00c-4fb5-a8f4-40c674f8741c.jpg)
 <br><br>
 
