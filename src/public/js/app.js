@@ -220,7 +220,7 @@ socket.on("ice", (ice) => {
 
 //socket code part 2 : 텍스트 채팅 핸들링
 function addMessage(message, socketId) {
-  console.log(message, socketId);
+  // console.log(message, socketId);
 
   if (socketId === socket.id) {
     let $msg = document.createElement("div");
